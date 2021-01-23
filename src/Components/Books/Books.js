@@ -16,7 +16,7 @@ class Books extends Component {
     }
 
     render() {
-        
+        console.log("--------", this.props);
         return (
           <table className="table table-striped">
             <thead>
@@ -29,7 +29,7 @@ class Books extends Component {
               </tr>
             </thead>
             <tbody>              
-              {/* {
+              {
                 this.props.books.map((book) => {
                   return (
                     <Book key={book.id}
@@ -39,7 +39,7 @@ class Books extends Component {
                       />     
                   )
                 })
-              } */}
+              }
             </tbody>
           </table>
         )
@@ -47,8 +47,10 @@ class Books extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log("state-----", state);
   return {
-    books: state.books,
+    books: state
+    ,
   }
 };
 

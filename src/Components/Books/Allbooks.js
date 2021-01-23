@@ -22,6 +22,7 @@ class AllBooks extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         <div className="container">
@@ -30,6 +31,7 @@ class AllBooks extends Component {
           <CreateBook 
             onAdd={this.props.onAdd}
             book={this.state.book}
+         
             />
         </div>
           <div className="books-table-container">
@@ -42,16 +44,18 @@ class AllBooks extends Component {
 }
 
 const mapStateToProps = state => {
+
   return {
     book: state.book,
   }
 };
 
 const mapDispatchToProps = dispatch => {
+    
   return {
-    onAdd: (book) => dispatch(createBook(book)),
+    onAdd: (book) => dispatch(createBook(book))
+
   }
 }
 
-export default connect(mapStateToProps,
-                       mapDispatchToProps)(AllBooks);
+export default connect(mapStateToProps, mapDispatchToProps)(AllBooks);

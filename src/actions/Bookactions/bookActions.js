@@ -26,6 +26,7 @@ export const createBook = (book) => {
             return axios.post(url, data)
                 .then(response => {
                     const id = response.data;
+                    console.log(id.name);
                     return axios.get(`${url}/${id}`).then((response) => {
                         dispatch(createBookSuccess(response.data));
                     }).catch(error => {
@@ -89,6 +90,11 @@ export const deleteBookSuccess = (id) => {
 
 export const deleteBook = (id) => {
     return (dispatch) => {
+        
+        // const id=axios.get(url,data).then(response=>{
+        //     const id=response.data;
+        // })
+        
         return axios.delete(`${url}/${id}`)
             .then(() => {
                 dispatch(deleteBookSuccess(id));
@@ -107,10 +113,25 @@ export const fetchBooks = (books) => {
 
 const normalizeResponse = (data) => {
     const arr=[]
+    var obj;
     for(const key in data){
-        arr.push(data[key])
+        
+         obj = data[key];
+        obj.Id=key;
+        console.log("---type of id",(typeof(obj.Id))   );
+        arr.push(obj);
+        console.log("---type of id",(typeof(obj.Id))   );
+        console.log(obj);
+      
+        console.log("--arr",arr)
     }
-    // const arr = data.map(item => {
+    console.log((arr[0]))
+    // let arr1=arr.map(obj=>{
+    //     const rObj={}
+    //     rObj[obj.key]=obj.value
+    // })
+    
+    // const arr1 = arr.map(item => {
     //     const keys = Object.keys(item);
 
     //     keys.forEach(k => {
@@ -121,8 +142,9 @@ const normalizeResponse = (data) => {
     //     return item;
     // });
 
-    return arr;
-    console.log("---arr",arr);
+    // return arr1;
+    // console.log(typeof(arr[0].Id))
+   
 };
 
 export const fetchAllBooks = () => {    
@@ -132,6 +154,7 @@ export const fetchAllBooks = () => {
                 //convert attributes from uppercase to lowercase
                 const data = normalizeResponse(response.data);
                 dispatch(fetchBooks(data));
+                console.log("data:actions",data);
             }).catch(error => {
                 throw(error);
             })

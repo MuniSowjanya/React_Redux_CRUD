@@ -10,7 +10,7 @@ class CreateBook extends Component {
             Author: '',
             Year: '',
         };
-
+     console.log("-createbook state",this.state);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
         this.handleReset = this.handleReset.bind(this);
